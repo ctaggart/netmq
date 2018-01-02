@@ -155,7 +155,7 @@ namespace NetMQ.Tests
             }
         }
 
-        [Fact(Skip = "Timing out on Linux sometimes")]
+        [Fact]
         public void BothSpeakerAndListener()
         {
             using (var beacon1 = new NetMQBeacon())
@@ -174,7 +174,7 @@ namespace NetMQ.Tests
             }
         }
 
-        [Fact(Skip = "Timing out on Linux")]
+        [Fact]
         public void BothSpeakerAndListenerOverLoopback()
         {
             using (var beacon1 = new NetMQBeacon())
