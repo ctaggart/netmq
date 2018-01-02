@@ -3,6 +3,7 @@ skip_tags: true
 image: Visual Studio 2017
 configuration: Release
 build_script:
+  - ps: (ls "$env:programfiles/dotnet/shared/Microsoft.NETCore.App").Name | Out-String
   - dotnet restore src/NetMQ.sln
   - msbuild src/NetMQ.sln /p:Configuration=Release /p:PackageVersion=%APPVEYOR_BUILD_VERSION%-pre /p:Version=%APPVEYOR_BUILD_VERSION% /verbosity:minimal
   - dotnet pack src/NetMQ/NetMQ.csproj -c Release --no-build /p:PackageVersion=%APPVEYOR_BUILD_VERSION%-pre /p:Version=%APPVEYOR_BUILD_VERSION%
