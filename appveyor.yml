@@ -3,12 +3,8 @@ skip_tags: true
 image: Visual Studio 2017
 configuration: Release
 build_script:
-  - ps: |
-    $version = '4.0.0.1'
-    $packageVersion = $version + '-pdb' + [int]::Parse($env:appveyor_build_number).ToString('000')
-  - ps: dotnet restore src/NetMQ.sln
-  - ps: msbuild src/NetMQ.sln /p:Configuration=Release /p:PackageVersion=$packageVersion /p:Version=$version /verbosity:minimal
-  - ps: dotnet pack src/NetMQ/NetMQ.csproj -c Release --no-build /p:PackageVersion=$packageVersion /p:Version=$version
+  - ps: ./appveyor.ps1
+
 test_script:
   - cd src\NetMQ.Tests
   - dotnet xunit -configuration Release -verbose -nobuild -parallel none -f netcoreapp2.0 -fxversion 2.0.3
